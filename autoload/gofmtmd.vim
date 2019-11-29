@@ -22,15 +22,19 @@ function! s:reload_changed() abort
   let &autoread = current_autoread
 endfunction
 
+" s:exit_cb reloads any changed buffers and then calls next.
+function! s:exit_cb(next, job, exitval) abort
+  call s:reload_changed()
+endfunction
+
 function! s:err_cb(ch, msg) abort
 	echoerr a:msg
 endfunction
 
 function! gofmtmd#execFmt() abort
   let cmd = ['gofmtmd', '-r', expand("%:p")]
-  let op = {'err_cb': function('s:err_cb')}
+  let op = {'err_cb': function('s:err_cb'), 'exit_cb', function('s:exit_cb')}
   call job_start(cmd, op)
-  call s:reload_changed()
 endfunction
 
 let &cpo = s:save_cpo

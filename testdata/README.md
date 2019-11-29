@@ -4,8 +4,10 @@ in development ...
 
 ```go
 package main
+
 import "fmt"
-func main(){
-fmt.Println("hello gofmtmd")
+
+func main() {
+	fmt.Println("hello gofmtmd")
 }
 ```
