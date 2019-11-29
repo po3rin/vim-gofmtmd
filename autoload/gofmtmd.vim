@@ -16,7 +16,7 @@ function! s:err_cb(ch, msg) abort
 endfunction
 
 function! gofmtmd#execFmt() abort
-  let cmd = ['gofmtmd', '-r', '/Users/hiromunakamura/hi_dev/vim-gofmtmd/testdata/README.md']
+  let cmd = ['gofmtmd', '-r', expand("%:p")]
   let op = {'err_cb': function('s:err_cb')}
   call job_start(cmd, op)
 endfunction
