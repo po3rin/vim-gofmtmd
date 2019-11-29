@@ -15,3 +15,6 @@ vim-gofmtmd formats go source code block in Markdown. detects fenced code & form
 ```bash
 :GoFmtMd
 ```
+
+## TODO
+Run on save
