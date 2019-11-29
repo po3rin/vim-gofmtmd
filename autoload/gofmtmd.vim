@@ -23,7 +23,7 @@ function! s:reload_changed() abort
 endfunction
 
 " s:exit_cb reloads any changed buffers and then calls next.
-function! s:exit_cb() abort
+function! s:exit_cb(job, exitval) abort
   call s:reload_changed()
 endfunction
 
