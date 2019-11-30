@@ -1,6 +1,6 @@
 # vim-gofmtmd
 
-in development ...
+this is hello world code in Go!!
 
 ```go
 package main
