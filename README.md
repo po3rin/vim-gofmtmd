@@ -39,8 +39,8 @@ command
 :GoFmtMd
 ```
 
-Also you can run automatically when saved.
+## Option
+You can set following option to enable auto format when write to file
 
-```vim
-:w
-```
+`let g:gofmtmd_auto_fmt = 1`
+
