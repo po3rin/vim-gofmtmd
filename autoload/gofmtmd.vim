@@ -3,13 +3,8 @@
 
 scriptencoding utf-8
 
-if !exists('g:loaded')
-    finish
-endif
-let g:loaded = 1
-
 let s:save_cpo = &cpo
-set cpo&vi
+set cpo&vim
 
 function! s:reload_changed() abort
   " reload all files to reflect the new changes. We explicitly call
@@ -28,13 +23,16 @@ function! s:exit_cb(job, exitval) abort
 endfunction
 
 function! s:err_cb(ch, msg) abort
-	echoerr a:msg
+	echohl ErrorMsg | echomsg a:msg | echohl None
 endfunction
 
 function! gofmtmd#execFmt() abort
-  let cmd = ['gofmtmd', '-r', expand("%:p")]
-  let op = {'err_cb': function('s:err_cb'), 'exit_cb': function('s:exit_cb')}
-  call job_start(cmd, op)
+  " if file type is 'markdown', execute command
+  if &ft is# 'markdown'
+    let cmd = ['gofmtmd', '-r', expand("%:p")]
+    let op = {'err_cb': function('s:err_cb'), 'exit_cb': function('s:exit_cb')}
+    call job_start(cmd, op)
+  endif
 endfunction
 
 let &cpo = s:save_cpo
