@@ -23,7 +23,7 @@ function! s:exit_cb(job, exitval) abort
 endfunction
 
 function! s:err_cb(ch, msg) abort
-	echoerr a:msg
+	echohl ErrorMsg | echomsg a:msg | echohl None
 endfunction
 
 function! gofmtmd#execFmt() abort
