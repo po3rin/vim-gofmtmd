@@ -17,21 +17,29 @@ function! s:reload_changed() abort
   let &autoread = current_autoread
 endfunction
 
+function! s:echo_err(msg) abort
+  echohl ErrorMsg | echomsg a:msg | echohl None
+endfunction
+
 " s:exit_cb reloads any changed buffers and then calls next.
 function! s:exit_cb(job, exitval) abort
   call s:reload_changed()
 endfunction
 
 function! s:err_cb(ch, msg) abort
-	echohl ErrorMsg | echomsg a:msg | echohl None
+	call s:echo_err(a:msg)
 endfunction
 
 function! gofmtmd#execFmt() abort
   " if file type is 'markdown', execute command
   if &ft is# 'markdown'
-    let cmd = ['gofmtmd', '-r', expand("%:p")]
+    let cmd = 'gofmtmd'
+    if !executable(cmd)
+      call s:echo_err('not found gofmtmd, please install https://github.com/po3rin/gofmtmd')
+      return
+    endif
     let op = {'err_cb': function('s:err_cb'), 'exit_cb': function('s:exit_cb')}
-    call job_start(cmd, op)
+    call job_start([cmd, '-r', expand("%:p")], op)
   endif
 endfunction
 
