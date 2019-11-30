@@ -43,9 +43,10 @@ command
 :GoFmtMd
 ```
 
-Auto format when save
+If you want to run automatically when saved, edit .vimrc
 
 ```vim
+" in .vimrc
 autocmd! BufWritePost *.md : call gofmtmd#execFmt()
 ```
 
