@@ -3,10 +3,10 @@
 
 scriptencoding utf-8
 
-if exists('g:loaded')
+if exists('g:loaded_gofmtmd')
     finish
 endif
-let g:loaded = 1
+let g:loaded_gofmtmd = 1
 
 let s:save_cpo = &cpo
 set cpo&vim

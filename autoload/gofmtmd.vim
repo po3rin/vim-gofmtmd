@@ -3,13 +3,8 @@
 
 scriptencoding utf-8
 
-if !exists('g:loaded')
-    finish
-endif
-let g:loaded = 1
-
 let s:save_cpo = &cpo
-set cpo&vi
+set cpo&vim
 
 function! s:reload_changed() abort
   " reload all files to reflect the new changes. We explicitly call
