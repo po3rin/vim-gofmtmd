@@ -27,9 +27,12 @@ function! s:err_cb(ch, msg) abort
 endfunction
 
 function! gofmtmd#execFmt() abort
-  let cmd = ['gofmtmd', '-r', expand("%:p")]
-  let op = {'err_cb': function('s:err_cb'), 'exit_cb': function('s:exit_cb')}
-  call job_start(cmd, op)
+  " if file type is 'markdown', execute command
+  if &ft is# 'markdown'
+    let cmd = ['gofmtmd', '-r', expand("%:p")]
+    let op = {'err_cb': function('s:err_cb'), 'exit_cb': function('s:exit_cb')}
+    call job_start(cmd, op)
+  endif
 endfunction
 
 let &cpo = s:save_cpo
