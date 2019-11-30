@@ -12,6 +12,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 command! GoFmtMd :call gofmtmd#execFmt()
+autocmd! BufWritePost *.md : call gofmtmd#execFmt()
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
