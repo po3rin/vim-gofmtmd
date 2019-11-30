@@ -1,6 +1,6 @@
 # vim-gofmtmd
 
-<img src="image/cover.png" width="640px"/>
+<img src="image/out.gif" width="640px"/>
 
 vim-gofmtmd formats go source code block in Markdown. detects fenced code & formats code using gofmt.
 
@@ -11,6 +11,8 @@ vim-gofmtmd formats go source code block in Markdown. detects fenced code & form
 ## Inatall
 
 First of all, you should install gofmtmd.
+
+<a href="https://github.com/po3rin/gofmtmd"><img src="https://github-link-card.s3.ap-northeast-1.amazonaws.com/po3rin/gofmtmd.png" width="420px"></a>
 
 ```bash
 go get github.com/po3rin/gofmtmd/cmd/gofmtmd
@@ -29,12 +31,6 @@ let g:lsp_async_completion = 1
 call plug#end()
 ```
 
-and exec
-
-```vim
-:PlugInstall
-```
-
 ## Usage
 
 command
@@ -43,12 +39,8 @@ command
 :GoFmtMd
 ```
 
-If you want to run automatically when saved, edit .vimrc
+Also you can run automatically when saved.
 
 ```vim
-" in .vimrc
-autocmd! BufWritePost *.md : call gofmtmd#execFmt()
+:w
 ```
-
-## TODO
-Run on save
