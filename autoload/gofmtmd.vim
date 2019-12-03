@@ -9,12 +9,12 @@ set cpo&vim
 let s:vim = {}
 let s:nvim = {}
 
-function! s:vim.job_start(args, options) abort
-  call job_start(args, options)
+function! s:vim.job_start(cmd, op) abort
+  call job_start(a:cmd, a:op)
 endfunction
 
-function! s:nvim.job_start(args, options) abort
-  call jobstart(args, options)
+function! s:nvim.job_start(cmd, op) abort
+  call jobstart(a:cmd, a:op)
 endfunction
 
 function! s:reload_changed() abort

@@ -7,13 +7,10 @@ jobs:
     steps:
     - checkout
     - run:
-        name: ls
-        command: ls -la
-    - run:
         name: install vim
         command: apk --update add vim wget
     - run:
-        name: Vim version
+        name: vim version
         command: vim --version
     - run:
         name: install gofmtmd
@@ -25,13 +22,35 @@ jobs:
         name: mv .vimrc
         command: mv ./testdata/.vimrc ~/.vimrc
     - run:
-        name: check path
-        command: ls -la && pwd && env
+        name: unit test
+        command: vim +":call test#run()" testdata/testdata.md
+  build-neovim:
+    docker:
+    - image: alpine:latest
+    working_directory: ~/plugin/vim-gofmtmd
+    steps:
+    - checkout
     - run:
-        name: Unit test
+        name: install nvim
+        command: apk --update add neovim wget
+    - run:
+        name: nvim version
+        command: nvim --version
+    - run:
+        name: install gofmtmd
+        command: wget https://github.com/po3rin/gofmtmd/releases/download/v0.1.2/gofmtmd_0.1.2_linux_amd64.tar.gz && tar -xzvf gofmtmd_0.1.2_linux_amd64.tar.gz && cp gofmtmd /usr/local/bin/
+    - run:
+        name: gofmtmd
+        command: gofmtmd --version
+    - run:
+        name: mv .vimrc
+        command: mv ./testdata/.vimrc ~/.vimrc
+    - run:
+        name: unit test
         command: vim +":call test#run()" testdata/testdata.md
 workflows:
   version: 2
   workflow:
     jobs:
     - build
+    - build-neovim
