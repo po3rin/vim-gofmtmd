@@ -1,5 +1,7 @@
 # vim-gofmtmd
 
+[![CircleCI](https://circleci.com/gh/po3rin/vim-gofmtmd.svg?style=shield)](https://circleci.com/gh/po3rin/vim-gofmtmd)
+
 <img src="image/out.gif" width="640px"/>
 
 vim-gofmtmd formats go source code block in Markdown. detects fenced code & formats code using gofmt.
