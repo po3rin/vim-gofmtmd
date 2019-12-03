@@ -7,7 +7,7 @@ let v:errors = []
 
 function! test#run() abort
     call gofmtmd#execFmt()
-    execute 'w'
+    sleep 3 "wait ...
     call assert_equalfile("testdata/golden.md", "testdata/testdata.md")
     if len(v:errors) >= 1
         echo v:errors
