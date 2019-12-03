@@ -47,7 +47,7 @@ jobs:
         command: mv ./testdata/.vimrc ~/.vimrc
     - run:
         name: unit test
-        command: vim +":call test#run()" testdata/testdata.md
+        command: nvim +":call test#run()" testdata/testdata.md
 workflows:
   version: 2
   workflow:
