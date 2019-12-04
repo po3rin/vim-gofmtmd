@@ -6,6 +6,17 @@ scriptencoding utf-8
 let s:save_cpo = &cpo
 set cpo&vim
 
+let s:vim = {}
+let s:nvim = {}
+
+function! s:vim.job_start(cmd, op) abort
+  call job_start(a:cmd, a:op)
+endfunction
+
+function! s:nvim.job_start(cmd, op) abort
+  call jobstart(a:cmd, a:op)
+endfunction
+
 function! s:reload_changed() abort
   " reload all files to reflect the new changes. We explicitly call
   " checktime to trigger a reload of all files. See
@@ -39,7 +50,8 @@ function! gofmtmd#execFmt() abort
       return
     endif
     let op = {'err_cb': function('s:err_cb'), 'exit_cb': function('s:exit_cb')}
-    call job_start([cmd, '-r', expand("%:p")], op)
+    let editor = has('nvim') ? s:nvim : s:vim
+    call editor.job_start([cmd, '-r', expand("%:p")], op)
   endif
 endfunction
 
