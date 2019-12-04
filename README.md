@@ -42,7 +42,7 @@ command
 ```
 
 ## Option
-You can set following option to enable auto format when write to file
+You can set following option to enable auto format when save file.
 
 `let g:gofmtmd_auto_fmt = 1`
 
