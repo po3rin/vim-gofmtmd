@@ -43,11 +43,8 @@ jobs:
         name: gofmtmd
         command: gofmtmd --version
     - run:
-        name: mv .vimrc
-        command: mv ./testdata/.vimrc ~/.vimrc
-    - run:
         name: unit test
-        command: nvim +":call test#run()" testdata/testdata.md
+        command: nvim -u ./testdata/.vimrc +":call test#run()" testdata/testdata.md
 workflows:
   version: 2
   workflow:
