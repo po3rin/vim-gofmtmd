@@ -20,7 +20,10 @@ endfunction
 
 function! test#run() abort
     call gofmtmd#execFmt()
+
+    " https://github.com/vim-jp/issues/issues/957 ??
     sleep 2 "wait ...
+
     let editor = has('nvim') ? s:nvim : s:vim
     call editor.assert_equalfile("testdata/golden.md", "testdata/testdata.md")
     if len(v:errors) >= 1
