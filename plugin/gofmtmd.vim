@@ -16,7 +16,7 @@ command! GoFmtMd :call gofmtmd#execFmt()
 if get(g:, 'gofmtmd_auto_fmt', 0)
     augroup gofmtmd_autofmt
         autocmd!
-        autocmd BufWritePost *.md :call gofmtmd#execFmt()
+        autocmd BufWritePost * if &ft == 'markdown' | :call gofmtmd#execFmt() | endif
     augroup END
 endif
 
